@@ -21,7 +21,7 @@ navigator.geolocation.getCurrentPosition(function(position) {
   const message = "SafetyTap Alert: I need help. My location: " + location;
 
   // 4. LINK SMS (iPhone Messages app)
-  const sms = "sms:+1234567890&body=" + encodeURIComponent(message);
+  const sms = "sms:+13474707382&body=" + encodeURIComponent(message);
 
   // 5. Redirigir a Mensajes
   window.location.href = sms;
