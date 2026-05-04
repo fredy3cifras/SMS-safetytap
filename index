@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SafetyTap SMS</title>
+</head>
+
+<body style="font-family: Arial; text-align:center; padding:50px;">
+
+  <h1>SafetyTap</h1>
+  <p>Emergency SMS system</p>
+
+  <a href="sos.html" style="font-size:22px;">
+    Activate SOS
+  </a>
+
+</body>
+</html>
