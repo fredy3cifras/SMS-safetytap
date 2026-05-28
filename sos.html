@@ -8,25 +8,42 @@
 <h2>Sending SOS...</h2>
 
 <script>
-navigator.geolocation.getCurrentPosition(function(position) {
 
-  // 1. Obtener coordenadas GPS
-  const lat = position.coords.latitude;
-  const lon = position.coords.longitude;
+// 🔒 Número dividido (más difícil de leer por bots)
+const part1 = "1347";
+const part2 = "470";
+const part3 = "7382";
+const phone = "+" + part1 + part2 + part3;
 
-  // 2. Crear link de Google Maps
-  const location = "https://maps.google.com/?q=" + lat + "," + lon;
+navigator.geolocation.getCurrentPosition(
+  function(position) {
 
-  // 3. MENSAJE SMS
-  const message = "SafetyTap Alert: I need help. My location: " + location;
+    // 1. Obtener coordenadas
+    const lat = position.coords.latitude;
+    const lon = position.coords.longitude;
 
-  // 4. LINK SMS (iPhone Messages app)
-  const sms = "sms:+13474707382&body=" + encodeURIComponent(message);
+    // 2. Link de ubicación
+    const location = "https://maps.google.com/?q=" + lat + "," + lon;
 
-  // 5. Redirigir a Mensajes
-  window.location.href = sms;
+    // 3. Mensaje
+    const message = "SafetyTap Alert: I need help. My location: " + location;
 
-});
+    // 4. Crear link SMS (compatible iPhone + Android)
+    const sms = "sms:" + phone + "?body=" + encodeURIComponent(message);
+
+    // 5. Redirigir automáticamente
+    window.location.href = sms;
+  },
+
+  function(error) {
+    // ⚠️ Si el usuario rechaza ubicación
+    const fallbackMessage = "SafetyTap Alert: I need help but location unavailable.";
+    const sms = "sms:" + phone + "?body=" + encodeURIComponent(fallbackMessage);
+
+    window.location.href = sms;
+  }
+);
+
 </script>
 
 </body>
